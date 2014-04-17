@@ -1,240 +1,137 @@
-﻿/*
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Date_judgment_Progrom
+namespace HDOB_conversion
 {
-    class Program
+    class Problem : Prompt
     {
         static void Main(string[] args)
         {
-            int []ymd = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-            int leap, sum;
-            leap = sum = 0;
-            
-            Console.Write("Please input current year, month, and day intermation:\n");
-            int year = Convert.ToInt16(Console.ReadLine());
-            if (year % 4 == 0 || year % 100 == 0 && year % 400 == 0)
-                leap = 1;
-            else
-                leap = 0;
-
-            int month = Convert.ToInt16(Console.ReadLine());
-            if (!(0 < month && month <= 12))
-            {
-                Console.WriteLine("intput month number illegal, please checked");
-                Console.ReadLine();
-                return;
-            }
-
-            int day = Convert.ToInt16(Console.ReadLine());
-            if (!(0 < day && day <= 31))
-            {
-                Console.WriteLine("intput day number illegal, please checked");
-                Console.ReadLine();
-                return;
-            }
-
-            for(int num = 0; num < month; ++num)
-            {
-                sum += ymd[num];
-            }
-            sum = leap != 0 ? sum += day + 1 : sum += day;
-            Console.WriteLine("Now Date is NO." + sum.ToString() + " day of " + year.ToString() + " year.");
+            //this is function invoke areas
+            featureInfo();
+            Console.WriteLine("Press <Enter> key to leave...");
             Console.ReadLine();
         }
     }
 }
-*/
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Date_judgment_Progrom
-{
+//string str_nocite=
+//    "\t\t\t\tNOCICE\n\n" +
+//    "Please be informed that office safety training section will be conducted from\n" +
+//    "2:30 to 4:30 this Friday afternoon in Conference Room 109.\n\n" +
+//    "All staff are require to come, handouts will available after the section.\n\n" +
+//    "\t\t\t\t\t\t\t\tJacky Tam\n" +
+//    "\t\t\t\t\t\t\t\toffice manager\n" +
+//    "\t\t\t\t\t\t\t\tJuly 15, 2009"
+//;
+//Console.WriteLine(str_nocite);
 
-    class Datesort
-    {
-        public int i = 0;
-        public int t = 0;
-        public int sort(int year, int month, int day)
-        {
-/*
-            for (i = 1; i < month; i++) {
-                if (i <= 7) {
-                    if (i % 2 != 0)
-                        t += 31;
-                    else if (i == 2) {
-                        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-                            t += 29;
-                        }
-                        else {
-                            t += 28;
-                        }
-                    }
-                    else
-                        t += 30;
-                }
-                else {
-                    if (i % 2  != 0)
-                        t += 30;
-                    else
-                        t += 31;
-                }
-            }
-            return t += day;
-*/
-            for(++i; i < month; i++) {
-                if ((i == 1) || (i == 3) || (i == 5) || (i == 7) || (i == 8) || (i == 10) || (i == 12))
-                    t += 31;
-                else if (i == 2) {
-                    if (year % 4 == 0 || year % 100 == 0 && year % 400 == 0)
-                        t += 29;
-                    else
-                        t += 28;
-                }
-                else
-                    t += 30;
-            }
-            return t += day;
-        }
-    }
-    class Dateinput : Datesort
-    {
-        public void sort()
-        {
-                    
-        }
-    }
-    class program_1
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Please input date information,Note that the input format is YYYY-MM-DD:");
-            int n, day, month, year;
-            n = day = month = year = 0;
-            string dmy = Console.ReadLine();
-            string []dmy_array = dmy.Split('-');
-            foreach (string temp in dmy_array)
-            {
-                if (n == 0)
-                    year = int.Parse(temp.Trim());
-                if (n == 1)
-                    month = int.Parse(temp.Trim());
-                if (n == 2) {
-                    day = int.Parse(temp.Trim());
-                for(++i; i < month; i++) {
-                if ((i == 1) || (i == 3) || (i == 5) || (i == 7) || (i == 8) || (i == 10) || (i == 12)) {
-                        if (day < 1 || 31 < day) {
-                        Console.WriteLine("Error: User enter day number should be within '1-31', please check it.");
-                        return;
-                        }
-                    }
-                else if (i == 2) {
-                    if (year % 4 == 0 || year % 100 == 0 && year % 400 == 0)
-                        t += 29;
-                    else
-                        t += 28;
-                }
-                else
-                    t += 30;
-            }
-                    if (day < 1 || 31 < day) {
-                        Console.WriteLine("Error: User enter day number should be within '1-31', please check it.");
-                        return;
-                    }    
-                }     
-                n++;
-            }
-            
-            Datesort ds = new Datesort();
-            n = ds.sort(year, month, day);
-/*
-            switch (month) {
-                case 12:
-                    day += 30;
-                case 11:
-                    day += 31;
-                case 10:
-                    day += 30;
-                case 9:
-                    day += 31;
-                case 8:
-                    day += 31;
-                case 7:
-                    day += 30;
-                case 6:
-                    day += 31;
-                case 5:
-                    day += 30;
-                case 4:
-                    day += 31;
-                case 3:
-                    day += 28;
-                case 2:
-                    day += 31;
-                case 1:
-                    day += 0;
-                default:
-                    Console.WriteLine("Error: User input month number should be within '1-12', plese check it.");
-                    break;
-            }
+//Method backup of HEX => BIN
+//top = -1;
+//int barAddr = 0;
+//int num_tmp = 0;
+//int[] arri_stack = new int[maxsize];
+//while ((barAddr = waitCvt.IndexOf("-")) != -1) {
+//    num_tmp = int.Parse(waitCvt.Substring(0, barAddr));
+//    while (num_tmp != 0) {
+//        arri_stack[++top] = num_tmp % int.Parse(demand);
+//        num_tmp /= int.Parse(demand);
+//    }
+//    waitCvt = waitCvt.Remove(0, barAddr + 1);
+//}
+//for (num_tmp = int.Parse(waitCvt); num_tmp != 0; num_tmp /= int.Parse(demand)) {
+//    arri_stack[++top] = num_tmp % int.Parse(demand);
+//}
+//if (numType == "binary") {
+//    int split = 1;
+//    while (top != -1) {
+//        Console.Write(arri_stack[top--].ToString());
+//        if (split % 4 == 0) {
+//            Console.Write(" ");
+//        }
+//        split++;
+//    }
+//}
 
-            Console.WriteLine("Now date is NO.{0} day of {1} year.",
-              ((year % 4 == 0 || year % 100 == 0 && year % 400 == 0) ? day += 1 : day), year);
-
-*/
-            Console.WriteLine("Now date is NO.{0} day of {1} year.",
-                             n, year);
-            Console.ReadLine();
-        }
-    }
-
-/*
-    class Program_2
-    {
-        static void Main(string[] args)
-        {
-            int []ymd = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-            int num, sum;
-            sum = num = 0;
-//            int leap = 0;
-
-            Console.Write("Please input current year, month, and day intermation:\n");
-            int year = Convert.ToInt16(Console.ReadLine());
-            if (year % 4 == 0 || year % 100 == 0 && year % 400 == 0)
-                ymd[2] = 29;
-
-            int month = Convert.ToInt16(Console.ReadLine());
-            if (!(0 < month && month <= 12))
-            {
-                Console.WriteLine("intput month number illegal, please check it.");
-
-                Console.ReadLine();
-                return;
-            }
-
-            int day = Convert.ToInt16(Console.ReadLine());
-            if (!(0 < day && day <= 31))
-            {
-                Console.WriteLine("intput day number illegal, please check.");
-                Console.ReadLine();
-                return;
-            }
-
-            for(; num < month; num++)
-            {
-                sum += ymd[num];
-            }
-//            sum = leap != 0 ? sum += day + 1 : sum += day;
-            sum += day;
-            Console.WriteLine("Now Date is NO." + sum.ToString() + " day of " + year.ToString() + " year.");
-            Console.ReadLine();
-        }
-    }
-*/
+//tradition solution of user guide
+//            string str_guide =
+//                "\nWhat can i do for you, yound fellow?\n" +
+//                "a)     convert decimal to hexadecimal-number.\n" +
+//                "b)     reverse a) conversion.\n" +
+//                "c)     convert decimal to octal-number.\n" +
+//                "d)     reverse c) conversion.\n" +
+//                "e)     convert decimal to binay-number.\n" +
+//                "f)     reverse e) conversion.\n" +
+//                "g)     convert hexadecimal to octal-number.\n" +
+//                "h)     reverse g) conversion.\n" +
+//                "i)     convert hexadecimal to binary-number.\n" +
+//                "j)     reverse i) conversion.\n" +
+//                "k)     convert octal to binary.\n" +
+//                "l)     reverse k) conversion.\n"
+//            ;
+//            Console.WriteLine(str_guide);
+//            char char_userSelect = ' ';
+//            try {
+//                char_userSelect = char.Parse(Console.ReadLine());
+//            }
+//            catch (Exception e) {
+//                if (e.Data != null)
+//                    errorPrompt("Option", "a~i\' Or", " \'A~I");
+//            }
+//            string[] arrs_type = {"hexadecimal", "decimal", "octal", "binary"};
+//            switch (char_userSelect) {
+//                case 'A':
+//                case 'a':
+//                    hdobConvert(numInput(arrs_type[1]), 16, arrs_type[0]);                  //DEC => HEX
+//                    reQuery();
+//                    break;
+//                case 'B':
+//                case 'b':
+//                    hdobConvert(numInput(arrs_type, 0), 16, arrs_type[1]);                  //HEX => DEC
+//                    reQuery();
+//                    break;
+//                case 'C':
+//                case 'c':
+//                    hdobConvert(numInput(arrs_type[1]), 8, arrs_type[2]);                   //DEC => OCT
+//                    reQuery();
+//                    break;
+//                case 'D':
+//                case 'd':
+//                    hdobConvert(numInput(arrs_type, 2), 8, arrs_type[1]);                   //OCT => DEC
+//                    reQuery();
+//                    break;
+//                case 'E':
+//                case 'e':
+//                    hdobConvert(numInput(arrs_type[1]), 2, arrs_type[3]);                   //DEC => BIN
+//                    reQuery();
+//                    break;
+//                case 'F':
+//                case 'f':
+//                    hdobConvert(numInput(arrs_type, 3), 2, arrs_type[1]);                   //BIN => DEC
+//                    reQuery();
+//                    break;
+//                case 'G':
+//                case 'g':
+//                    hdobConvert(numInput(arrs_type, 0), '\x33', arrs_type[2]);              //HEX => OCT
+//                    reQuery();
+//                    break;
+//                case 'H':
+//                case 'h':
+//                    hdobConvert(numInput(arrs_type, 2), '\x34', arrs_type[0]);              //OCT => HEX
+//                    reQuery();
+//                    break;
+//                case 'I':
+//                case 'i':
+//                    hdobConvert(numInput(arrs_type, 0), '\x34', arrs_type[3]);              //HEX => BIN
+//                    reQuery();
+//                    break;
+//                case 'L':
+//                    hdobConvert(numInput(arrs_type, 3), '\x34', arrs_type[0]);              //BIN => HEX    ***wait debug
+//                    break;
+//                default:
+//                    Console.WriteLine("Warning: input error, please retry..");
+//                    featureInfo();
+//                    break;
+//            }

@@ -28,6 +28,7 @@ namespace Date_and_Time_Judgment_CA
                         year = int.Parse(temp.Trim());
                         if (!(year >= 1 && year <= (int)(System.Math.Pow(2, 15) - 1))) {
                             tips.prompt_error("year", "1", (System.Math.Pow(2, 15) - 1).ToString());
+                            input_ymd();
                         }
                     }
                     if (n == 1)
@@ -72,7 +73,6 @@ namespace Date_and_Time_Judgment_CA
                                 input_ymd();
                             }
                         }
-                    }
                     n++;
                 }
             }
@@ -90,21 +90,21 @@ namespace Date_and_Time_Judgment_CA
                     {
                         case 0:
                             hour = Convert.ToInt16(temp.Trim());
-                            if (!(hour >= 0 && 24 >= hour)) {
-                                tips.prompt_error("hour", "1", "59");
+                            if (!(hour >= 0 && 23 >= hour)) {
+                                tips.prompt_error("hour", "1", "23");
                                 input_hmt();
                             }
                             break;
                         case 1:
                             minite = Convert.ToInt16(temp.Trim());
-                            if (!(minite >= 0 && 60 >= minite)) {
+                            if (!(minite >= 0 && 59 >= minite)) {
                                 tips.prompt_error("minite", "1", "59");
                                 input_hmt();
                             }
                             break;
                         case 2:
                             second = Convert.ToInt16(temp.Trim());
-                            if (!(second >= 0 && 60 >= second)) {
+                            if (!(second >= 0 && 59 >= second)) {
                                 tips.prompt_error("second", "1", "59");
                                 input_hmt();
                             }
@@ -146,11 +146,11 @@ namespace Date_and_Time_Judgment_CA
                     ds.sort(year, month, day, hour, minite);
                     break;
                 case 'd':
-                        dio.input_ymd();
-                        Console.WriteLine("Please enter a after-nowday-number that the day belong witch year of witch month of witch day...");
-                        int days = Convert.ToInt16(Console.ReadLine());
-                        ds.sort(year, month, day, days);
-                        break;
+                    dio.input_ymd();
+                    Console.WriteLine("Please enter a after-nowday-number that the day belong witch year of witch month of witch day...");
+                    int days = Convert.ToInt16(Console.ReadLine());
+                    ds.sort(year, month, day, days);
+                    break;
                 default:
                     Console.WriteLine("Error: please choose one option of letter'a-d'");
                     break;
@@ -158,7 +158,7 @@ namespace Date_and_Time_Judgment_CA
         }
         public static void reQuery()
         {
-            string requeryTabstr = 
+            string requeryTabstr =
                 "\nCompute Success!\nDo you want to re-query other information?!\n" +
                 "Y or y:\t---->\tback to main interface!\n" +
                 "N or n:\t---->\tquit this program, Goodbye :)";
